@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <style>
+            *{
+                margin:0;
+            }
+            #progress{
+                position:fixed;
+                top:0;
+                left:0;
+                background-color: green;
+                height:3px;
+                width:0;
+                z-index: 1999;
+            }
+        </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.5.2/browser/pixi.js" integrity="sha512-XHX32YCocEDCIiENmO7pf91TtRITLfCagN+uLlj9sJ7RUVBHN1JZtlfb02x4OyXfkuQegd1u6i9mzpRMg+w5xw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    </head>
+    <body>
+        <div id="progress"></div>
+        <script>
+            console.log('Pixi ', PIXI);
+            const game = new PIXI.Application({
+                width: innerWidth,
+                height: innerHeight,
+                backgroundColor: 0xff0000
+            });
+            console.log('pixi instance', game);
+
+
+            const hello = new PIXI.Text('Hello World!!');
+            hello.x = innerWidth/2;
+            hello.y = innerHeight/2;
+            hello.anchor.set(0.5);
+
+
+            game.loader.add('car', 'https://cdn.pixabay.com/photo/2017/02/01/12/23/car-2030056_960_720.png')
+            .add('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvm0IHCxUEcMSobvcpqmss9J35Acr6NIzy-j59_T04zlsRLNu8Dekz7otdcNROL4mz908&usqp=CAU')
+            .load(
+                () => {
+                    document.body.appendChild(game.view);
+                    const car = PIXI.Sprite.from('car');
+                    game.stage.addChild(car);
+                    game.stage.addChild(hello);
+                }
+            );
+            let pDiv = document.getElementById('progress');
+            game.loader.onProgress.add((e)=>{
+                console.log('loaded ', e.progress);
+                pDiv.style.width = e.progress+"%";
+                if(e.progress === 100){
+                    pDiv.style.width = 0;
+                }
+            })
+
+        </script>
+    </body>
+</html>
