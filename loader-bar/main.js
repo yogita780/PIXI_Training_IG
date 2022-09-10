@@ -5,8 +5,8 @@ const game = new PIXI.Application({
   });
   document.getElementById("game").append(game.view);
   loadAssets([
-    { name: "back", url: "assets/car1.png" },
-    { name: "front", url: "assets/car1.png" },
+    { name: "back", url: "assets/img2.png" },
+    { name: "front", url: "assets/img2.png" },
   ], start);
   //------------------------------
   const pBar = document.getElementById("bar");
@@ -53,9 +53,9 @@ const game = new PIXI.Application({
       front.y=20;
       game.stage.addChild(front);
   
-      var text = new PIXI.Text('Car  Game',
+      var text = new PIXI.Text('Game',
       {
-        font : '50px Arial',
+        font : '100px Arial',
         fill : 0xFFFFFF,
         align : 'center',
       });
