@@ -7,7 +7,7 @@ export class Game extends Application {
     super(opts);
     this.preload(
       [
-        { name: "wheel", url: "assets/wheel2.png" },
+        { name: "wheel", url: "assets/wheel5.png" },
         { name: "ptr", url: "assets/ptr1.png" },
       ],
       this.onLoad.bind(this)
@@ -18,11 +18,11 @@ export class Game extends Application {
     this.loader.load(cb);
   }
   winnerpage(luck: number): void {
-    let arr = [12,11,10,9,8,7,6,5,4,3,2,1];
+    let arr = [10,5,1,100,15,"Jackpot",20,5,1,50,2,"Zero"];
     let text = new Text(
-      "Yayyy... You have won : " +
+      "hurrah... You  won : " +
         arr[luck] +
-        "$ from this lucky spin wheel\n"
+        "$ from spin wheel\n"
     );
     text.x = innerWidth / 2;
     text.y = innerHeight / 2;
@@ -36,7 +36,7 @@ export class Game extends Application {
 
   onLoad(): void {
     const wheel = new Sprite(this.loader.resources["wheel"].texture);
-    wheel.scale.set(0.7);
+    wheel.scale.set(1.1);
     wheel.anchor.set(0.5);
     wheel.x = this.screen.width / 2;
     wheel.y = this.screen.height / 2;
@@ -46,10 +46,10 @@ export class Game extends Application {
     console.log(this.stage);
 
     const ptr = new Sprite(this.loader.resources["ptr"].texture);
-    ptr.scale.set(0.13);
+    ptr.scale.set(0.15);
     ptr.anchor.set(0.5);
     ptr.x = this.screen.width / 2;
-    ptr.y = this.screen.height / 2 - 175;
+    ptr.y = this.screen.height / 2 - 205;
     this.stage.addChild(ptr);
 
     wheel.on("pointerup", () => {
@@ -61,7 +61,7 @@ export class Game extends Application {
         { angle: 3600 + stopAngle, duration: 6, ease: "expo.out" }
       );
       setTimeout(() => {}, 6000);
-
+      wheel.interactive = false;
       setTimeout(() => {
         wheel.visible = false;
         ptr.visible = false;
