@@ -7,7 +7,7 @@ export class Game extends Application {
     super(opts);
     this.preload(
       [
-        { name: "wheel", url: "assets/wheel5.png" },
+        { name: "wheel", url: "assets/wheel6.png" },
         { name: "ptr", url: "assets/ptr1.png" },
       ],
       this.onLoad.bind(this)
